@@ -16,3 +16,6 @@ public protocol ObservableConvertibleType {
     /// - returns: Observable sequence that represents `self`.
     func asObservable() -> Observable<E>
 }
+
+///: Observable <- ObservableType <- ObservableConvertibleType 线的基础协议。
+///: ObservableConvertibleType 协议规定了实例必须可以转换为 Observable 类型。而 Observable 实际又服从 ObservableConvertibleType 协议，这是循环依赖的关系。

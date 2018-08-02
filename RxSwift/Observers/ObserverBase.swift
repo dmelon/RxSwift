@@ -5,7 +5,7 @@
 //  Created by Krunoslav Zaher on 2/15/15.
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
-
+///: 线程安全的类型
 class ObserverBase<ElementType> : Disposable, ObserverType {
     typealias E = ElementType
 
@@ -18,6 +18,7 @@ class ObserverBase<ElementType> : Disposable, ObserverType {
                 onCore(event)
             }
         case .error, .completed:
+            ///: 如果 _isStopped == 0，则返回 true，同时将 _isStopped 置为 1。该操作是原子性的，会 block 读操作，相当于加锁。
             if AtomicCompareAndSwap(0, 1, &_isStopped) {
                 onCore(event)
             }

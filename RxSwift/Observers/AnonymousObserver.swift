@@ -5,7 +5,7 @@
 //  Created by Krunoslav Zaher on 2/8/15.
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
-
+///: 继承自 ObserverBase，线程安全
 final class AnonymousObserver<ElementType> : ObserverBase<ElementType> {
     typealias Element = ElementType
     

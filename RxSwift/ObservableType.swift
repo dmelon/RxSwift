@@ -33,6 +33,7 @@ public protocol ObservableType : ObservableConvertibleType {
     */
     func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == E
 }
+///: ObservableType 只规定了一个方法，即接收 Observer，并返回 Disposable。
 
 extension ObservableType {
     
@@ -45,3 +46,6 @@ extension ObservableType {
         }
     }
 }
+///: ObservableType 默认实现了 ObservableConvertibleType 协议规定的方法，即一个的 AnonymousObservable。
+///: AnonymousObservable 是 fileprivate 修饰的，即只在 Observable 的扩展方法 create(:) 中使用了。
+///: 注意，不像 AnyObserver，并没有 AnyObservable。
