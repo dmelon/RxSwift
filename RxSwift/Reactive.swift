@@ -72,3 +72,4 @@ import class Foundation.NSObject
 
 /// Extend NSObject with `rx` proxy.
 extension NSObject: ReactiveCompatible { }
+///: 定义 rx 命名空间，在 rx scope 里，就不用太担心命名冲突。

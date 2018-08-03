@@ -98,6 +98,7 @@ public final class CompositeDisposable : DisposeBase, Cancelable {
     ///
     /// - parameter disposeKey: Key used to identify disposable to be removed.
     public func remove(for disposeKey: DisposeKey) {
+        ///: dispose() 操作在 _lock.unlock() 之后，这是因为 Disposable 的设计中，dispose() 操作已经是线程安全的了
         _remove(for: disposeKey)?.dispose()
     }
     
@@ -107,6 +108,7 @@ public final class CompositeDisposable : DisposeBase, Cancelable {
     }
     
     /// Disposes all disposables in the group and removes them from the group.
+    ///: dispose() 操作在 _lock.unlock() 之后，这是因为 Disposable 的设计中，dispose() 操作已经是线程安全的了，所以该方法也是线程安全的
     public func dispose() {
         if let disposables = _dispose() {
             disposeAll(in: disposables)
@@ -122,6 +124,7 @@ public final class CompositeDisposable : DisposeBase, Cancelable {
         return disposeBag
     }
 }
+///: Disposable 的容器，其 insert、remove、dispose 都是线程安全的
 
 extension Disposables {
 
@@ -149,3 +152,4 @@ extension Disposables {
         }
     }
 }
+///: 对 Disposables 创建 create 扩展时，会根据入参数量自动选择最优的容器

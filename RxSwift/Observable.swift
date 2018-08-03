@@ -41,4 +41,5 @@ public class Observable<Element> : ObservableType {
         return _map(source: self, transform: transform)
     }
 }
+///: 基类，无法实例化使用。它最重要的子类是 Producer。
 

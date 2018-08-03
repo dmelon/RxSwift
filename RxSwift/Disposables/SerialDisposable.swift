@@ -73,3 +73,4 @@ public final class SerialDisposable : DisposeBase, Cancelable {
         }
     }
 }
+///: 只能包含一个 Disposable 的容器。对其 wrap 的 Disposable 替换时，会对 oldValue 进行 dispose 操作

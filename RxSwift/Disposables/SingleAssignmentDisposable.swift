@@ -74,3 +74,4 @@ public final class SingleAssignmentDisposable : DisposeBase, Cancelable {
     }
 
 }
+///: 只允许赋值一次 Disposable 的容器。如果尝试二次赋值，则会抛出异常

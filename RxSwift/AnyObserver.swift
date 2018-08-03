@@ -70,3 +70,4 @@ extension ObserverType {
         }
     }
 }
+///: Observer 的核心是一个闭包，即： (Event<Element>) -> Void。AnyObserver 是这个闭包的 Wrapper。

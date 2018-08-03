@@ -11,3 +11,4 @@ public protocol Disposable {
     /// Dispose resource.
     func dispose()
 }
+///: 可以被 dispose，即做一些资源销毁的操作。比如说，网路请求中 cancel request、Notification 中 remove observer

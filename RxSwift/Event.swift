@@ -20,6 +20,7 @@ public enum Event<Element> {
     /// Sequence completed successfully.
     case completed
 }
+///: Event 是 Observable 发出的元素，Observer 负责接收 Event
 
 extension Event : CustomDebugStringConvertible {
     /// - returns: Description of event.

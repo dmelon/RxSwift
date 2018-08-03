@@ -82,6 +82,7 @@ public final class DisposeBag: DisposeBase {
         dispose()
     }
 }
+///: 和 CompositeDisposable 一样，是一个线程安全的 Disposable 容器。不同的是此类会在 deinit 时会自动销毁存储的 Disposable。
 
 extension DisposeBag {
 

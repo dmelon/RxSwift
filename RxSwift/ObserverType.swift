@@ -38,3 +38,5 @@ extension ObserverType {
         on(.error(error))
     }
 }
+///: ObservableType 只规定了一个方法，即接收、处理 Event。
+

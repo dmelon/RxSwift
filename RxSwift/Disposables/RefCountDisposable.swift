@@ -9,7 +9,9 @@
 /// Represents a disposable resource that only disposes its underlying disposable resource when all dependent disposable objects have been disposed.
 public final class RefCountDisposable : DisposeBase, Cancelable {
     private var _lock = SpinLock()
+    ///: 这个语法不错，可以替换 `private var _disposable: Disposable? = nil` 的写法
     private var _disposable = nil as Disposable?
+    ///: 指代该实例是否被调用过 dispose 方法
     private var _primaryDisposed = false
     private var _count = 0
 
@@ -115,3 +117,8 @@ internal final class RefCountInnerDisposable: DisposeBase, Disposable
         }
     }
 }
+///: RefCountInner -> RefCount -> Disposable
+///: 如果对 RefCountInner 进行 release，RefCount 的 count 会 -1，如果此时 count == 0 且 RefCount 曾被调用过 dispose，则对 Disposable 进行 dispose
+///: 如果对 RefCount 进行 dispose，则会对 _primaryDisposed 进行标识。如果此时 count == 0，则直接对 Disposable 进行 dispose
+
+

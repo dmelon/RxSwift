@@ -31,3 +31,4 @@ public final class BooleanDisposable : Cancelable {
         _isDisposed = true
     }
 }
+///: 包含一个状态变量，可以查看是否已经调用过 dispose 方法。搜索全局，只用在了单元测试里了，不知道还有别的用处否？

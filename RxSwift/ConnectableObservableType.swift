@@ -17,3 +17,4 @@ public protocol ConnectableObservableType : ObservableType {
     */
     func connect() -> Disposable
 }
+///: 建立 ObservableWrapper 和其被 wrapped 的 Observable 的链接，返回的 Dispoable 用来取消链接。

@@ -11,3 +11,4 @@ public protocol Cancelable : Disposable {
     /// Was resource disposed.
     var isDisposed: Bool { get }
 }
+///: 继承自 Disposable，但有一个状态位表示该 Disposable 是否已经被 disposed

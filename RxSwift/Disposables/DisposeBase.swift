@@ -20,3 +20,4 @@ public class DisposeBase {
 #endif
     }
 }
+///: 用来 trace 的 Disposable 基类

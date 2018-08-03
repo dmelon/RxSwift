@@ -19,6 +19,7 @@ struct BagKey {
     */
     fileprivate let rawValue: UInt64
 }
+///: UInt64 的简单 wrap
 
 /**
 Data structure that represents a bag of elements typed `T`.
@@ -133,7 +134,7 @@ struct Bag<T> : CustomDebugStringConvertible {
         return nil
     }
 }
-
+///: 通过 var、array、dictionary 3 种方式来按 key 存储 value。非线程安全。
 extension Bag {
     /// A textual representation of `self`, suitable for debugging.
     var debugDescription : String {

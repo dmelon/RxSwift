@@ -42,7 +42,7 @@ private final class BinaryDisposable : DisposeBase, Cancelable {
         }
     }
 }
-
+///: 一次性可以 dispose 掉 2 个的 Disposable，相当于个容器。是 private 修饰的，只用在了下面这个 extension 里了
 extension Disposables {
     
     /// Creates a disposable with the given disposables.
