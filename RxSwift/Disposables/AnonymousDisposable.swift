@@ -50,7 +50,6 @@ fileprivate final class AnonymousDisposable : DisposeBase, Cancelable {
 }
 ///: 一个表示 dispose 语义 block 的 wrapper。
 ///: 这种 wrapper 在 AnyObserver 也可见到，常用的函数式编程技巧，用来 erase type（for other type）、provide type（for block）
-///: 同时该 Disposable 是线程安全的
 
 extension Disposables {
     

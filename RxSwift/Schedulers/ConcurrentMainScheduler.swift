@@ -43,6 +43,8 @@ public final class ConcurrentMainScheduler : SchedulerType {
     - parameter action: Action to be executed.
     - returns: The disposable object used to cancel the scheduled action (best effort).
     */
+    ///: 和 MainScheduler 相比，ConcurrentMainScheduler 可以进行嵌套 schedule。
+    ///: 比如一个 action 中嵌套了一个 schedule，那么第二个 action 也会被 sync 执行
     public func schedule<StateType>(_ state: StateType, action: @escaping (StateType) -> Disposable) -> Disposable {
         if DispatchQueue.isMain {
             return action(state)

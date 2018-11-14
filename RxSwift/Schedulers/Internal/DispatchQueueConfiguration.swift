@@ -22,6 +22,7 @@ private func dispatchInterval(_ interval: Foundation.TimeInterval) -> DispatchTi
 }
 
 extension DispatchQueueConfiguration {
+    ///: 一律异步 schedule 出 action
     func schedule<StateType>(_ state: StateType, action: @escaping (StateType) -> Disposable) -> Disposable {
         let cancel = SingleAssignmentDisposable()
 
@@ -37,6 +38,7 @@ extension DispatchQueueConfiguration {
         return cancel
     }
 
+    ///: 指定某个时间点 schedule 出 action
     func scheduleRelative<StateType>(_ state: StateType, dueTime: Foundation.TimeInterval, action: @escaping (StateType) -> Disposable) -> Disposable {
         let deadline = DispatchTime.now() + dispatchInterval(dueTime)
 
@@ -75,6 +77,7 @@ extension DispatchQueueConfiguration {
         return compositeDisposable
     }
 
+    ///: 每隔一段时间重复 schedule action
     func schedulePeriodic<StateType>(_ state: StateType, startAfter: TimeInterval, period: TimeInterval, action: @escaping (StateType) -> StateType) -> Disposable {
         let initial = DispatchTime.now() + dispatchInterval(startAfter)
 

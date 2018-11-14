@@ -16,6 +16,7 @@ public typealias RxTimeInterval = TimeInterval
 public typealias RxTime = Date
 
 /// Represents an object that schedules units of work.
+///: schedule action，同时支持指定时间、周期重复 schedule action
 public protocol SchedulerType: ImmediateSchedulerType {
 
     /// - returns: Current time.

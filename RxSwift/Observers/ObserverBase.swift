@@ -5,7 +5,6 @@
 //  Created by Krunoslav Zaher on 2/15/15.
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
-///: 线程安全的类型
 class ObserverBase<ElementType> : Disposable, ObserverType {
     typealias E = ElementType
 

@@ -7,6 +7,7 @@
 //
 
 /// Represents an object that immediately schedules units of work.
+///: 立马 schedule action
 public protocol ImmediateSchedulerType {
     /**
     Schedules an action to be executed immediately.

@@ -80,3 +80,4 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
         return self.configuration.schedulePeriodic(state, startAfter: startAfter, period: period, action: action)
     }
 }
+///: 代理给 DispatchQueueConfiguration 来完成几个方法。

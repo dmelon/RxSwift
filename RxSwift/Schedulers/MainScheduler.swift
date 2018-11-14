@@ -18,6 +18,7 @@ Main scheduler is a specialization of `SerialDispatchQueueScheduler`.
 This scheduler is optimized for `observeOn` operator. To ensure observable sequence is subscribed on main thread using `subscribeOn`
 operator please use `ConcurrentMainScheduler` because it is more optimized for that purpose.
 */
+///: 协议继承链：MainScheduler <- SerialDispatchQueueScheduler <- SchedulerType <- ImmediateSchedulerType
 public final class MainScheduler : SerialDispatchQueueScheduler {
 
     private let _mainQueue: DispatchQueue
@@ -44,9 +45,13 @@ public final class MainScheduler : SerialDispatchQueueScheduler {
         }
     }
 
+    ///: 父类是用 DispatchQueueConfiguration 来实现的，而 DispatchQueueConfiguration 的实现都是 async 的，因此这里完全没调用 super 的方法
+    ///: asyncInstance 即是用父类实现的
     override func scheduleInternal<StateType>(_ state: StateType, action: @escaping (StateType) -> Disposable) -> Disposable {
         let currentNumberEnqueued = AtomicIncrement(&numberEnqueued)
 
+        ///: 和 ConcurrentMainScheduler 相比，MainScheduler 当前只能 schedule 一个 action。
+        ///: 比如一个 action 中嵌套了一个 schedule，那么第二个 action 就一定会被 async 执行
         if DispatchQueue.isMain && currentNumberEnqueued == 1 {
             let disposable = action(state)
             _ = AtomicDecrement(&numberEnqueued)

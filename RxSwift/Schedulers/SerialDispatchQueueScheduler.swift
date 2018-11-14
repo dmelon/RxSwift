@@ -27,6 +27,7 @@ In case some customization need to be made on it before usage,
 internal serial queue can be customized using `serialQueueConfiguration`
 callback.
 */
+///: 串行 schedule 出 action，即 schedule 的 action 总是被串行执行。默认实现是通过 serial queue 和 async 派发来保证的
 public class SerialDispatchQueueScheduler : SchedulerType {
     public typealias TimeInterval = Foundation.TimeInterval
     public typealias Time = Date
@@ -55,13 +56,14 @@ public class SerialDispatchQueueScheduler : SchedulerType {
         serialQueueConfiguration?(queue)
         self.init(serialQueue: queue, leeway: leeway)
     }
-    
+    /// graduate Brave new things really new things during your early 20s
     /**
     Constructs new `SerialDispatchQueueScheduler` named `internalSerialQueueName` that wraps `queue`.
     
     - parameter queue: Possibly concurrent dispatch queue used to perform work.
     - parameter internalSerialQueueName: Name of internal serial dispatch queue proxy.
     */
+    ///: 如果传入的是 concurrent 类型的 queue 也没关系，这里新建了一个 serial queue，并将 target 设置为传入的 queue    
     public convenience init(queue: DispatchQueue, internalSerialQueueName: String, leeway: DispatchTimeInterval = DispatchTimeInterval.nanoseconds(0)) {
         // Swift 3.0 IUO
         let serialQueue = DispatchQueue(label: internalSerialQueueName,
@@ -121,3 +123,4 @@ public class SerialDispatchQueueScheduler : SchedulerType {
         return self.configuration.schedulePeriodic(state, startAfter: startAfter, period: period, action: action)
     }
 }
+///: 代理给 DispatchQueueConfiguration 来完成几个方法。
